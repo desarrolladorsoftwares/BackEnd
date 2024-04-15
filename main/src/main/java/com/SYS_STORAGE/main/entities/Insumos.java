@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -14,6 +14,8 @@ import java.sql.Date;
 @Builder
 @Entity
 @Table(name="insumos")
+
+
 public class Insumos {
 
     @Id
@@ -24,7 +26,7 @@ public class Insumos {
     private String descripcion;
     private double costo_de_compra;
     private String unidad_medida;
-    private Date fecha_adquisicion;
+    private LocalDate fecha_adquisicion;
     private int proveedor_id;
     private int almacen_id;
     private int categoria_insumo_id;
