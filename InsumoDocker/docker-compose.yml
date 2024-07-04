@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  insumo:
+    build: main
+    mem_limit: 512m
+    ports:
+      - 8083:8083
+    restart: always
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/sys_storage?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: luis
+      SPRING_DATASOURCE_PASSWORD: 123456
+
+  db:
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_USER: luis
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_PASSWORD: 123456
+      MYSQL_DATABASE: sys_storage
+    restart: always
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 10
+
